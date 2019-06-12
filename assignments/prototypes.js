@@ -57,8 +57,46 @@ function Humanoid(attributes) {
 
 }
 
-Object.prototype.greet = function(){
+Object.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}.`
+};
+
+function Villain(attributes) {
+  Humanoid.call(this, attributes);
+}
+
+Object.prototype.shadowBall = function() {
+  if (this.name === 'Evil Person') {
+    hero.healthPoints -= 10;
+    if (hero.healthPoints <= 0) {
+      return `The villain has defeated the hero!`;
+    }
+    else {
+      return `The ${this.name} conjures a shadowball and hurls it at the hero for 10 damage. The hero now has ${hero.healthPoints}hp remaining.`
+    }
+  }
+  else {
+    return `${this.name} cannot cast a shadowball.`
+  }
+};
+
+function Hero(attributes) {
+  Humanoid.call(this, attributes);
+}
+
+Object.prototype.basicAttack = function() {
+  if (this.name === 'Hero Person'){
+    villain.healthPoints -= 5;
+    if (villain.healthPoints <= 0) {
+      return `The hero has defeated the villain!`
+    }
+    else {
+      return `The hero attacks the villain with his sword for 5 damage. The villain now has ${villain.healthPoints}hp remaining.`;
+    }
+  }
+  else {
+    return `${this.name} cannot perform a basic attack.`
+  }
 };
 
 /*
@@ -122,11 +160,11 @@ Object.prototype.greet = function(){
   const villain = new Humanoid({
     createdAt: new Date(),
     dimensions: {
-      length: 2,
+      length: 1,
       width: 1,
       height: 5,
     },
-    heathPoints: 100,
+    healthPoints: 100,
     name: 'Evil Person',
     team: 'Evil Team',
     weapons: [
@@ -134,6 +172,22 @@ Object.prototype.greet = function(){
     ],
     language: 'Demonic',
   });
+
+  const hero = new Humanoid({
+    createdAt: new Date(),
+    dimensions: {
+      length: 3,
+      width: 3,
+      height: 4,
+    },
+    healthPoints: 50,
+    name: 'Hero Person',
+    team: 'Hero Team',
+    weapons: [
+      'The Sword of a Thousand Truths'
+    ],
+    language: 'Common',
+  })
 
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
@@ -145,6 +199,25 @@ Object.prototype.greet = function(){
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  // console.log(villain.shadowBall());
+  // console.log(hero.shadowBall());
+  // console.log(villain.basicAttack());
+  // console.log(hero.basicAttack());
+  console.log(villain.shadowBall());
+  console.log(villain.shadowBall());
+  console.log(villain.shadowBall());
+  console.log(villain.shadowBall());
+  console.log(hero.shadowBall());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
+  console.log(hero.basicAttack());
 
 
   // Stretch task:
